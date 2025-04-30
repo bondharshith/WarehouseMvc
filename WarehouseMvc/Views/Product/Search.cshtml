@@ -1,0 +1,48 @@
+﻿@model List<WarehouseMvc.Models.Product>
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<a href="@Url.Action("Index")" class="btn btn-secondary mb-3">Back to Product List</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.Quantity</td>
+                    <td>@product.Description</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Product", new { id = product.Id })" class="btn btn-primary">Edit</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a href="@Url.Action("Delete", "Product", new { id = product.Id })" class="btn btn-danger">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No products found.</td>
+            </tr>
+        }
+    </tbody>
+</table>

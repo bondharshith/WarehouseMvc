@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Product List";
+    var currentPage = ViewBag.CurrentPage;
+    var sortField = ViewBag.SortField;
+    var ascending = ViewBag.Ascending;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- Logout Button -->
+<form action="@Url.Action("Logout", "Auth")" method="post" style="display:inline;">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Logout</button>
+</form>
+
+<!-- Create Product Button (Visible only for Admins) -->
+@if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("Create", "Product")" class="btn btn-success mb-3">Create Product</a>
+}
+<!-- Search Form with Autocomplete -->
+<input type="text" id="searchBox" class="form-control me-2" placeholder="Enter product name..." />
+<button id="searchBtn" class="btn btn-primary">Search</button>
+
+<form id="searchForm" method="get" asp-controller="Product" asp-action="Search" style="display:none;">
+    <input type="hidden" name="namePart" id="hiddenSearchInput" />
+</form>
+
+@section Scripts {
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $("#searchBox").autocomplete({
+                source: '@Url.Action("Autocomplete", "Product")',
+                minLength: 1
+            });
+
+            $("#searchBtn").click(function () {
+                var term = $("#searchBox").val();
+                $("#hiddenSearchInput").val(term);
+                $("#searchForm").submit();
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a href="@Url.Action("Index", new { pageNumber = currentPage, sortField = "Id", ascending = !ascending })">
+                    ID @(sortField == "Id" ? (ascending ? "↑" : "↓") : "")
+                </a>
+            </th>
+            <th>
+                <a href="@Url.Action("Index", new { pageNumber = currentPage, sortField = "Name", ascending = !ascending })">
+                    Name @(sortField == "Name" ? (ascending ? "↑" : "↓") : "")
+                </a>
+            </th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Quantity</td>
+                <td>@product.Description</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = product.Id })" class="btn btn-primary">Edit</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("Delete", new { id = product.Id })" class="btn btn-danger">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination -->
+<div class="pagination">
+    <a href="@Url.Action("Index", new { pageNumber = currentPage - 1, sortField = sortField, ascending = ascending })"
+       class="btn btn-secondary @(currentPage <= 1 ? "disabled" : "")">&laquo; Previous</a>
+
+    <a href="@Url.Action("Index", new { pageNumber = currentPage + 1, sortField = sortField, ascending = ascending })"
+       class="btn btn-secondary @(Model.Count == 0 ? "disabled" : "")">Next &raquo;</a>
+</div>

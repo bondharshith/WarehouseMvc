@@ -1,0 +1,16 @@
+﻿@model WarehouseMvc.Models.Product
+
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Are you sure you want to delete the product "@Model.Name"?</h3>
+
+<form asp-action="DeleteConfirmed" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+</form>

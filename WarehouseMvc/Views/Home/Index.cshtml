@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Warehouse Management</h1>
+    <div class="mt-5">
+        <p>Please login to access the warehouse management system.</p>
+        <div class="d-flex justify-content-center gap-3 mt-3">
+            <a asp-controller="Auth" asp-action="Login" class="btn btn-primary">Login</a>
+            <a asp-controller="Auth" asp-action="Register" class="btn btn-secondary">Register</a>
+        </div>
+    </div>
+</div>

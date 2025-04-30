@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseMvc", "WarehouseMvc\WarehouseMvc.csproj", "{DE80CF9F-00DA-4FFD-8AC2-146785DBE93A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseMvc.Test", "WarehouseMvc.Test\WarehouseMvc.Test.csproj", "{348D3A2A-BB06-41CD-BA53-621234FE601D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE80CF9F-00DA-4FFD-8AC2-146785DBE93A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE80CF9F-00DA-4FFD-8AC2-146785DBE93A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE80CF9F-00DA-4FFD-8AC2-146785DBE93A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE80CF9F-00DA-4FFD-8AC2-146785DBE93A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{348D3A2A-BB06-41CD-BA53-621234FE601D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{348D3A2A-BB06-41CD-BA53-621234FE601D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{348D3A2A-BB06-41CD-BA53-621234FE601D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{348D3A2A-BB06-41CD-BA53-621234FE601D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F3C16A7-9320-4258-86B8-BDEE91793932}
+	EndGlobalSection
+EndGlobal
